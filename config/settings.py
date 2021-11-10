@@ -37,11 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Local
-    'accounts', # new
-    'pages', # new
 
+    # Third-party
+    'crispy_forms', # new
+
+    # Local
+    'accounts',
+    'pages',
 ]
+
+# django-crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4' # new
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,6 +142,7 @@ STATICFILES_FINDERS = [ # new
 
 
 AUTH_USER_MODEL = 'accounts.CustomUser' # new
+
 
 
 # config/settings.py
