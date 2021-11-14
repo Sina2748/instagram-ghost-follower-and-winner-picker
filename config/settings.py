@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+from pathlib import Path
+from environs import Env # new
+
+env = Env() # new
+env.read_env() # new
+
+SECRET_KEY = ')*_s#exg*#w+#-xt=vu8b010%%a&p@4edwyj0=(nqq90b9a8*n'
+# SECRET_KEY = env('DJANGO_SECRET_KEY')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -148,3 +157,8 @@ AUTH_USER_MODEL = 'accounts.CustomUser' # new
 # config/settings.py
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home' # new
+
+DATABASES = {
+    'default': env.dj_db_url('DATABASE_URL',
+    default='postgres://postgres@db/postgres')
+}

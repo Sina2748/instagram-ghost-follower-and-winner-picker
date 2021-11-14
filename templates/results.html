@@ -1,0 +1,18 @@
+<!-- templates/about.html -->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Results{% endblock title %}
+
+{% block content %}
+  <h1>Results Page</h1>
+
+  
+  <form method="post">    
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="save">
+  </form>
+
+
+  
+{% endblock content %}
