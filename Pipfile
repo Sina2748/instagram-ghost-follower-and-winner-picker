@@ -8,6 +8,7 @@ django = "~=3.1.0"
 psycopg2-binary = "==2.9.1"
 django-crispy-forms = "==1.9.2"
 environs = {version = "==8.0.0", extras = ["django"]}
+django-allauth = "==0.42.0"
 
 [dev-packages]
 

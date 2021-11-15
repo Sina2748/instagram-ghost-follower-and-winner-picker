@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # Local
     'accounts',
     'pages',
+    'books', # new
 ]
 
 # django-crispy-forms
