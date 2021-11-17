@@ -4,5 +4,10 @@
 {% block title %}About{% endblock title %}
 
 {% block content %}
+
   <h1>About Page</h1>
+  {% for book in book_list %}
+  <li>{{ book.title }}</li> 
+  {% endfor %}
+
 {% endblock content %}

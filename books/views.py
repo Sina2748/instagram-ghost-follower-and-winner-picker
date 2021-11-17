@@ -31,8 +31,14 @@ def home_view(request):
         # save the form data to model
         print('hi1')
         form.save()
+        print(form)
+        
+        book_list = Book.objects.all()
+        print(book_list)
+        context= {'book_list':book_list}
         print(context)
-        return render(request, "about.html", context)
+        # context['variable']= book_list
+        return render(request, "about.html", {'book_list':book_list})
 
     print('hi2')
     context['form']= form
