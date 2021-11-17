@@ -1,12 +1,14 @@
 <!-- templates/add.html -->
 {% extends '_base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
   <h1>Edit</h1>
-  <form action="/about/" method="GET">
+  <form action="#" method="POST">
 
     {% csrf_token %}
-    {{ form }}
+    {{ form|crispy }}
+    
 
     <button type="submit">SUBMIT</button>
     </form>
