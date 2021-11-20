@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView, UpdateView
 from django.views.generic.edit import CreateView
 from .models import Book
 from .forms import BookCreateForm
+import instaloader
 
 # https://www.agiliq.com/blog/2019/01/django-createview/
 
@@ -22,27 +23,42 @@ class BookDetailView(DetailView): # new
 
 def home_view(request):
     context ={}
-    print("hi3")
+    print("hi1")
     # create object of form
     form = BookCreateForm(request.POST or None, request.FILES or None)
       
     # check if form data is valid
     if form.is_valid():
         # save the form data to model
-        print('hi1')
+        print('hi3')
         form.save()
-        print(form)
+        # print(form)
         
         book_list = Book.objects.all()
-        print(book_list)
+        # print(book_list)
         context= {'book_list':book_list}
-        print(context)
-        # context['variable']= book_list
+        # print(context)
+
+        #### instaloader ####   
+
+        L = instaloader.Instaloader()
+        user_insta_ID = Book.objects.last()
+        user_insta_ID_str = str(user_insta_ID)
+        L.download_profile(user_insta_ID_str, profile_pic_only = True)      
+        
+        ####################
+
+        book_list = Book.objects.all()
+        # print(book_list)
+        context= {'book_list':book_list}
+        # print(context)
+
+        context['variable']= book_list
         return render(request, "about.html", {'book_list':book_list})
 
     print('hi2')
     context['form']= form
-    print(context)
+    # print(context)
     return render(request, "books/add.html", context)
 
 # class BookCreateView(CreateView): # new
