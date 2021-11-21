@@ -1,0 +1,15 @@
+<!-- templates/add.html -->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1>Enter your post URL</h1>
+  <form action="#" method="POST">
+
+    {% csrf_token %}
+    {{ form|crispy }}
+    
+
+    <button type="submit">SUBMIT</button>
+    </form>
+{% endblock content %}

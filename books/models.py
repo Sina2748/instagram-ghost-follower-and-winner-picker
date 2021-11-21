@@ -14,3 +14,11 @@ class Book(models.Model):
 
     # def get_absolute_url(self): # new
     #     return reverse('book_detail', args=[str(self.id)])
+
+# class Instagram_info(models.Model):
+#     instagram_ID = models.CharField(max_length=200)
+#     Email = models.CharField(max_length=200)
+
+
+    # def __str__(self):
+    #     return self.title

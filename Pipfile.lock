@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4e037111e900c455ab88e5f2f969b3be7b9bdd0d8f84de75674b70c2764d8d2f"
+            "sha256": "d67456c3f45487864aed8241f27b9be3b5995cb17d0486b901370c142ac32d15"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -110,13 +110,20 @@
             "markers": "python_version >= '3'",
             "version": "==3.3"
         },
+        "instaloader": {
+            "hashes": [
+                "sha256:2b651c05e80a02f103a262bf98da46fa3801cfd1fa1a99b231e42efcf9bd4540"
+            ],
+            "index": "pypi",
+            "version": "==4.8.1"
+        },
         "marshmallow": {
             "hashes": [
-                "sha256:6d00e42d6d6289f8cd3e77618a01689d57a078fe324ee579b00fa206d32e9b07",
-                "sha256:bba1a940985c052c5cc7849f97da196ebc81f3b85ec10c56ef1f3228aa9cbe74"
+                "sha256:04438610bc6dadbdddb22a4a55bcc7f6f8099e69580b2e67f5a681933a1f4400",
+                "sha256:4c05c1684e0e97fe779c62b91878f173b937fe097b356cd82f793464f5bc6138"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==3.14.0"
+            "version": "==3.14.1"
         },
         "oauthlib": {
             "hashes": [

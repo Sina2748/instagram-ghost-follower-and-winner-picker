@@ -14,6 +14,7 @@ urlpatterns = [
     path('', include('pages.urls')),
     # Local apps
     path('books/', include('books.urls')), # new
+    path('insta/', include('insta_app.urls')), # new
 
 ]
 
