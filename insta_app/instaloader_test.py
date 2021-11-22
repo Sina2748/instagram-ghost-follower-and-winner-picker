@@ -10,7 +10,7 @@ url_ = url[28:39]
 print(url_)
 
 PROFILE = "anis2423g"
-SHORTCODE = "CWLf3rbNT-H"
+SHORTCODE = "CWgsyoUKcmd"
 
 # Load session previously saved with `instaloader -l USERNAME`:
 # L.login("anis2423f", "anisanisanis") 
@@ -18,21 +18,39 @@ USER = "anis2423g"
 L.load_session_from_file(USER)
 profile = instaloader.Profile.from_username(L.context, PROFILE)
 
-likes = []
-print("Fetching likes of all posts of profile {}.".format(SHORTCODE))
+comments_from_loop = []
+print("Fetching comments of all posts of profile {}.".format(SHORTCODE))
 for post in profile.get_posts():
-    likes = post.from_shortcode(L.context, SHORTCODE).get_likes()
-    print(likes)
+    post2 = post.from_shortcode(L.context, SHORTCODE)
+    for x in post2.get_comments():
+        comments_from_loop.append(x.owner)
+    
+print(comments_from_loop)
 
-ran_like = []
-for like in likes:
-    ran_like = ran_like + [like.username]
 
-print(ran_like)
-winner = random.sample(ran_like, 4)
+a = []
+c = []
+for x in comments_from_loop:
+    a = str(x)
+    b = a[9:-14]
+    c.append(b)    
+
+comments_from_loop = c
+
+
+
+
+
+
+
+
+
+winner = random.sample(comments_from_loop, 4)
 print("winners: {}".format(winner))
 
     
+
+
 # print("Storing like into file.")
 # with open("inactive-users.txt", 'w') as f:
 #     for like in likes:

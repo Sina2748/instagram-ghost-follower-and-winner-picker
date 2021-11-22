@@ -36,39 +36,63 @@ def win_view(request):
         print(picker_kind)
         print(number_of_winers)
 
-        if picker_kind == 'comments':
-            pass
-        elif picker_kind == 'likes':
+        PROFILE = "anis2423g"
+        SHORTCODE = user_insta_url_str[28:39]
+        print(SHORTCODE)
+               
+        L = instaloader.Instaloader()
 
-            PROFILE = "anis2423g"
-            SHORTCODE = user_insta_url_str[28:39]
-            print(SHORTCODE)
+        # Load session previously saved with `instaloader -l USERNAME`:
+        L.login("anis2423g", "anisanisanis") 
+        # USER = "anis2423f"
+        # L.load_session_from_file(USER)
+        profile = instaloader.Profile.from_username(L.context, PROFILE)
 
-            L = instaloader.Instaloader()
+        likes = []
+        comments_from_loop = []
+        the_winner_list = []
 
-            # Load session previously saved with `instaloader -l USERNAME`:
-            L.login("anis2423g", "anisanisanis") 
-            # USER = "anis2423f"
-            # L.load_session_from_file(USER)
-            profile = instaloader.Profile.from_username(L.context, PROFILE)
+        ### comments
+        if picker_kind == 'comments':            
+            print("Fetching comments of all posts of profile {}.".format(SHORTCODE))
+            for post in profile.get_posts():
+                post2 = post.from_shortcode(L.context, SHORTCODE)
+                for x in post2.get_comments():
+                    comments_from_loop.append(x.owner)
+            print(comments_from_loop)
+            
+            # clearing list comments_from_loop
+            a = []
+            c = []
+            for x in comments_from_loop:
+                a = str(x)
+                b = a[9:-14]
+                c.append(b)    
 
-            likes = []
+            comments_from_loop = c
+            the_winner_list = comments_from_loop
+
+        ### likes
+        elif picker_kind == 'likes':        
             print("Fetching likes of all posts of profile {}.".format(SHORTCODE))
             for post in profile.get_posts():
                 likes = post.from_shortcode(L.context, SHORTCODE).get_likes()
                 
-
             ran_like = []
             for like in likes:
                 ran_like = ran_like + [like.username]
 
             print(ran_like)
-            winner = random.sample(ran_like, int(number_of_winers))
-            print("winner is {}".format(winner))
+            the_winner_list = ran_like
 
+        ### mentions
         elif picker_kind == 'mentions':
             pass
         
+
+        winner = random.sample(the_winner_list, int(number_of_winers))
+        print("winner is {}".format(winner))
+
         context= {'winner':winner}
         # print(context)
 

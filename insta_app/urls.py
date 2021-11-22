@@ -4,6 +4,6 @@ from .views import pick_view, win_view
 
 urlpatterns = [
     path('pick/', pick_view, name='pick'),
-    path('add/winners/', win_view, name='win'),
+    path('pick/winners/', win_view, name='win'),
 
 ]
