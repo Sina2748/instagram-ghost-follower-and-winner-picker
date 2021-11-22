@@ -9,6 +9,8 @@ from django.views.generic.edit import CreateView
 from .models import insta_model
 from .forms import AddCreateForm
 import instaloader
+import random
+
 # Create your views here.
 
 
@@ -41,31 +43,64 @@ def add_view(request):
         print(picker_kind)
         print(number_of_winers)
 
-         
-        #### instaloader ####   
-        L = instaloader.Instaloader()
-        # user_insta_ID = insta_model.objects.last()
-        # user_insta_ID_str = str(user_insta_ID)
-        
-        PROFILE = user_insta_ID_str
+        if picker_kind == 'comments':
+            pass
+        elif picker_kind == 'likes':
 
-        # Load session previously saved with `instaloader -l USERNAME`:
-        L.login("anis2423f", "anisanisanis") 
-        # USER = "anis2423f"
-        # L.load_session_from_file(USER, " ~\books\insta_app\session-anis2423f ")
+            PROFILE = "anis2423g"
+            SHORTCODE = user_insta_ID_str
 
-        profile = instaloader.Profile.from_username(L.context, PROFILE)
+            L = instaloader.Instaloader()
 
-        likes = []
-        print("Fetching likes of all posts of profile {}.".format(profile.username))
-        for post in profile.get_posts():
-            print(post)
-            likes = likes + list(post.get_likes())
+            # Load session previously saved with `instaloader -l USERNAME`:
+            L.login("anis2423g", "anisanisanis") 
+            # USER = "anis2423f"
+            # L.load_session_from_file(USER)
+            profile = instaloader.Profile.from_username(L.context, PROFILE)
 
-        print("Storing like into file.")
-        with open("inactive-users.txt", 'w') as f:
+            likes = []
+            print("Fetching likes of all posts of profile {}.".format(SHORTCODE))
+            for post in profile.get_posts():
+                likes = post.from_shortcode(L.context, SHORTCODE).get_likes()
+                print(likes)
+
+            ran_like = []
             for like in likes:
-                print(like.username, file=f)
+                ran_like = ran_like + [like.username]
+
+            print(ran_like)
+            winner = random.sample(ran_like, int(number_of_winers))
+            print("winner is {}".format(winner))
+
+        elif picker_kind == 'mentions':
+            pass
+
+
+
+        #### instaloader ####   
+        # L = instaloader.Instaloader()
+        # # user_insta_ID = insta_model.objects.last()
+        # # user_insta_ID_str = str(user_insta_ID)
+        
+        # PROFILE = user_insta_ID_str
+
+        # # Load session previously saved with `instaloader -l USERNAME`:
+        # L.login("anis2423f", "anisanisanis") 
+        # # USER = "anis2423f"
+        # # L.load_session_from_file(USER, " ~\books\insta_app\session-anis2423f ")
+
+        # profile = instaloader.Profile.from_username(L.context, PROFILE)
+
+        # likes = []
+        # print("Fetching likes of all posts of profile {}.".format(profile.username))
+        # for post in profile.get_posts():
+        #     print(post)
+        #     likes = likes + list(post.get_likes())
+
+        # print("Storing like into file.")
+        # with open("inactive-users.txt", 'w') as f:
+        #     for like in likes:
+        #         print(like.username, file=f)
 
 
         # likes = set()

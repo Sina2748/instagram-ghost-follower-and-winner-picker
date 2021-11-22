@@ -1,27 +1,55 @@
 import instaloader
+import random
+
 
 L = instaloader.Instaloader()
 
 
-PROFILE = "adighodsi_creation"
+PROFILE = "anis2423g"
+SHORTCODE = "CWLf3rbNT-H"
 
 # Load session previously saved with `instaloader -l USERNAME`:
-L.login("anis2423f", "anisanisanis") 
-# USER = "anis2423f"
-# L.load_session_from_file(USER, " ~\books\insta_app\session-anis2423f ")
-
+# L.login("anis2423f", "anisanisanis") 
+USER = "anis2423g"
+L.load_session_from_file(USER)
 profile = instaloader.Profile.from_username(L.context, PROFILE)
 
 likes = []
-print("Fetching likes of all posts of profile {}.".format(profile.username))
+print("Fetching likes of all posts of profile {}.".format(SHORTCODE))
 for post in profile.get_posts():
-    print(post)
-    likes = likes + list(post.get_likes())
+    likes = post.from_shortcode(L.context, SHORTCODE).get_likes()
+    print(likes)
 
-print("Storing like into file.")
-with open("inactive-users.txt", 'w') as f:
-    for like in likes:
-        print(like.username, file=f)
+ran_like = []
+for like in likes:
+    ran_like = ran_like + [like.username]
+
+print(ran_like)
+winner = random.sample(ran_like, 4)
+print("winners: {}".format(winner))
+
+    
+# print("Storing like into file.")
+# with open("inactive-users.txt", 'w') as f:
+#     for like in likes:
+#         print(like.username, file=f)
+
+
+
+
+### all the like of a profile
+# profile = instaloader.Profile.from_username(L.context, PROFILE)
+
+# likes = []
+# print("Fetching likes of all posts of profile {}.".format(profile.username))
+# for post in profile.get_posts():
+#     print(post)
+#     likes = likes + list(post.get_likes())
+
+# print("Storing like into file.")
+# with open("inactive-users.txt", 'w') as f:
+#     for like in likes:
+#         print(like.username, file=f)
 
 
 # for post in profile.get_posts():
