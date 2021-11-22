@@ -5,9 +5,11 @@
 
 {% block content %}
 
-  <h1>About Page</h1>
-  {% for book in book_list %}
-  <li>{{ book.title }}</li> 
+  <h1>Winners Are:</h1>
+  <ol>
+  {% for book in winner %}
+  <li>{{ book }}</li> 
   {% endfor %}
+  </ol>
 
 {% endblock content %}

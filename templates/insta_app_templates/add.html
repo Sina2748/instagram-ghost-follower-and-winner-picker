@@ -4,7 +4,7 @@
 
 {% block content %}
   <h1>Enter your post URL</h1>
-  <form action="#" method="POST">
+  <form action='{% url 'win' %}' method="POST">
 
     {% csrf_token %}
     {{ form|crispy }}
