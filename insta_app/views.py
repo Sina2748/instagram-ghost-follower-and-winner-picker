@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 # Create your views here.
@@ -29,7 +28,8 @@ def win_view(request):
 
         a = insta_model.objects.values( 'insta_url', 'picker_kind', 'number_of_winers' )
         b = a[len(a)-1]
-        user_insta_ID_str = b["insta_url"]
+        user_insta_url_str = b["insta_url"]
+
         picker_kind = b["picker_kind"]
         number_of_winers = b["number_of_winers"]
 
@@ -41,7 +41,8 @@ def win_view(request):
         elif picker_kind == 'likes':
 
             PROFILE = "anis2423g"
-            SHORTCODE = user_insta_ID_str
+            SHORTCODE = user_insta_url_str[28:39]
+            print(SHORTCODE)
 
             L = instaloader.Instaloader()
 
@@ -78,7 +79,7 @@ def win_view(request):
     return render(request, "about.html")
 
 
-def add_view(request):
+def pick_view(request):
     context ={}
     print("hi1")
     # create object of form

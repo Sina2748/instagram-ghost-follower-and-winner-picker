@@ -1,9 +1,9 @@
 # books/urls.py
 from django.urls import path
-from .views import add_view, win_view
+from .views import pick_view, win_view
 
 urlpatterns = [
-    path('add/', add_view, name='add'),
+    path('pick/', pick_view, name='pick'),
     path('add/winners/', win_view, name='win'),
 
 ]

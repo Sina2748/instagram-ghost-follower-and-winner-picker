@@ -4,6 +4,10 @@ import random
 
 L = instaloader.Instaloader()
 
+url = "https://www.instagram.com/p/CM7mfVGAmYd/"
+url_ = url[28:39]
+
+print(url_)
 
 PROFILE = "anis2423g"
 SHORTCODE = "CWLf3rbNT-H"
