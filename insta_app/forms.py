@@ -8,3 +8,10 @@ class AddCreateForm(forms.ModelForm):
         model = insta_model
         fields = "__all__"
 
+
+class FreeAddCreateForm(forms.ModelForm):
+    class Meta:
+        model = insta_model
+        fields = "__all__"
+        exclude = ['number_of_winers']
+
