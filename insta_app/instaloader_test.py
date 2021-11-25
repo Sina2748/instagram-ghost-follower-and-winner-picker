@@ -10,7 +10,7 @@ url_ = url[28:39]
 print(url_)
 
 PROFILE = "anis2423g"
-SHORTCODE = "CWgsyoUKcmd"
+SHORTCODE = "CWZzx09BZZ4"
 
 # Load session previously saved with `instaloader -l USERNAME`:
 # L.login("anis2423f", "anisanisanis") 
@@ -18,34 +18,44 @@ USER = "anis2423g"
 L.load_session_from_file(USER)
 profile = instaloader.Profile.from_username(L.context, PROFILE)
 
-comments_from_loop = []
+comments_from_loop_owner = []
+comments_from_loop_text = []
 print("Fetching comments of all posts of profile {}.".format(SHORTCODE))
 for post in profile.get_posts():
     post2 = post.from_shortcode(L.context, SHORTCODE)
     for x in post2.get_comments():
-        comments_from_loop.append(x.owner)
+        comments_from_loop_owner.append(x.owner)
+        comments_from_loop_text.append(x.text)
     
-print(comments_from_loop)
-
-
 a = []
 c = []
-for x in comments_from_loop:
+for x in comments_from_loop_owner:
     a = str(x)
     b = a[9:-14]
     c.append(b)    
 
-comments_from_loop = c
+comments_from_loop_owner = c
 
+mentioners_list =[]
+for i in comments_from_loop_text:
+    aa = set(i)
+    for j in aa:
+        if j == "@":
+            print(i)
+            index = comments_from_loop_text.index(i)
+            # print(index)
+            mentioners_list.append(index)
 
+print(mentioners_list)
+    
+mentioners_id = []
+for no in mentioners_list:
+    bbb = comments_from_loop_owner[no]
+    mentioners_id.append(bbb)
 
+print (mentioners_id)
 
-
-
-
-
-
-winner = random.sample(comments_from_loop, 4)
+winner = random.sample(mentioners_id, 1)
 print("winners: {}".format(winner))
 
     
