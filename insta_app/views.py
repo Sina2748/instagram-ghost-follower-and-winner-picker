@@ -137,14 +137,14 @@ def win_view(request):
             context= {'winner':winner}
             print(context)
 
-            return render(request, "about.html", context)
+            return render(request, "good_data.html", context)
         
         except:
             winner = ['Something is Wrong with the Data!']
             context= {'winner':winner}
             print(context)
 
-            return render(request, "about.html", context)
+            return render(request, "good_data.html", context)
     else:
         print('else_win_view')
         # form.save()
@@ -265,14 +265,14 @@ def win_view(request):
             context= {'winner':winner}
             print(context)
 
-            return render(request, "about.html", context)
+            return render(request, "good_data.html", context)
         
         except:
             winner = ['Something is Wrong with the Data!']
             context= {'winner':winner}
             print(context)
 
-            return render(request, "about.html", context)
+            return render(request, "good_data.html", context)
 
 @login_required
 def pick_view(request):
