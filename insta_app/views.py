@@ -10,10 +10,60 @@ from .forms import AddCreateForm, FreeAddCreateForm, AddCreateGhostForm
 import instaloader
 import random
 from django.contrib.auth.decorators import login_required
+import xlwt
+
 
 # Create your views here.
+# excel File
+def download_excel_data_view(request):
+	# content-type of response
+	response = HttpResponse(content_type='application/ms-excel')
+
+	#decide file name
+	response['Content-Disposition'] = 'attachment; filename="ThePythonDjango.xls"'
+
+	#creating workbook
+	wb = xlwt.Workbook(encoding='utf-8')
+
+	#adding sheet
+	ws = wb.add_sheet("sheet1")
+
+	# Sheet header, first row
+	row_num = 0
+
+	font_style = xlwt.XFStyle()
+	# headers are bold
+	font_style.font.bold = True
+
+	#column header names, you can use your own headers here
+	columns = ['winners']
+
+	#write column headers in sheet
+	for col_num in range(len(columns)):
+		ws.write(row_num, col_num, columns[col_num], font_style)
+
+	# Sheet body, remaining rows
+	font_style = xlwt.XFStyle()
+
+	#get your data, from database or from a text file...
+	data = win_view.winner
+	for my_row in data:
+		row_num = row_num + 1
+		ws.write(row_num, 0, my_row, font_style)
+
+
+	wb.save(response)
+	return response
+
+
+
+
+
+
+
 # ghosts_are_view
 def ghosts_are_view(request):
+    win_view.winner = []
     context = {}
     form = AddCreateGhostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -66,7 +116,8 @@ def ghosts_are_view(request):
             ghost_list.append(a)
 
         print(ghost_list)
-
+        win_view.winner = ghost_list
+        # download_excel_data_view(data) = ghost_list
         context= {'winner':ghost_list}   
 
         # print("Storing ghosts into file.")
@@ -96,6 +147,7 @@ def ghost_followers_view(request):
 
 # pick
 def win_view(request):
+    win_view.winner = []
     context = {}
     form = AddCreateForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -215,6 +267,7 @@ def win_view(request):
         
         try:
             winner = random.sample(the_winner_list, int(number_of_winers))
+            win_view.winner = winner
             print("winner is {}".format(winner))
 
             context= {'winner':winner}
@@ -378,3 +431,6 @@ def free_pick_view(request):
     context['form']= form
     # print(context['form'])
     return render(request, "insta_app_templates/add.html", context)
+
+
+

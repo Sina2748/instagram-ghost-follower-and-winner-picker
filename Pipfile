@@ -10,6 +10,7 @@ django-crispy-forms = "==1.9.2"
 environs = {version = "==8.0.0", extras = ["django"]}
 django-allauth = "==0.42.0"
 instaloader = "*"
+xlwt = "*"
 
 [dev-packages]
 
