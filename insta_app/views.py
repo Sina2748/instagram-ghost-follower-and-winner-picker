@@ -53,7 +53,9 @@ def download_excel_data_view(request):
 
 
 	wb.save(response)
+    
 	return response
+    
 
 
 
@@ -62,6 +64,7 @@ def download_excel_data_view(request):
 
 
 # ghosts_are_view
+@login_required
 def ghosts_are_view(request):
     win_view.winner = []
     context = {}
@@ -117,13 +120,10 @@ def ghosts_are_view(request):
 
         print(ghost_list)
         win_view.winner = ghost_list
-        # download_excel_data_view(data) = ghost_list
+
         context= {'winner':ghost_list}   
 
-        # print("Storing ghosts into file.")
-        # with open("inactive-users.txt", 'w') as f:
-        #     for ghost in ghosts:
-        #         print(ghost.username, file=f)
+
 
     return render(request, "ghosts_are.html", context)
 
@@ -142,10 +142,8 @@ def ghost_followers_view(request):
     return render(request, "ghost_followers.html", context)
 
 
-
-
-
 # pick
+@login_required
 def win_view(request):
     win_view.winner = []
     context = {}
@@ -410,7 +408,8 @@ def win_view(request):
 
             return render(request, "good_data.html", context)
 
-@login_required
+
+# free pick
 def pick_view(request):
     context ={}
     print("pick_view")

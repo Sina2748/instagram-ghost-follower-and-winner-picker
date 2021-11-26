@@ -6,10 +6,11 @@
 {% block content %}
 
   <h1>Winners are:</h1>
+  <a class="btn btn-outline-success" href='{% url 'download_excel' %}'>Download Excel File</a>
+
   <ol>
   {% for book in winner %}
   <li>{{ book }}</li> 
   {% endfor %}
   </ol>
-  <a class="btn btn-outline-success" href='{% url 'download_excel' %}'>Download Excel File</a>
 {% endblock content %}
