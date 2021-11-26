@@ -34,7 +34,7 @@ def ghosts_are_view(request):
         L = instaloader.Instaloader()
 
         # Load session previously saved with `instaloader -l USERNAME`:
-        L.login("anis2423f", "anisanisanis") 
+        L.login("anis2423g", "anisanisanis") 
         # USER = "anis2423f"
         # L.load_session_from_file(USER)
         profile = instaloader.Profile.from_username(L.context, PROFILE)
@@ -43,7 +43,7 @@ def ghosts_are_view(request):
         print(ff)
 
         if ff> 500:
-            ghost_list = ["it is not posible to find for acounts with more than 500 followers!!"]
+            ghost_list = ["This account has more tha 500 followes. Currently it's not possible to find the ghost followers list"]
             context= {'winner':ghost_list}
             return render(request, "ghosts_are.html", context)
 
