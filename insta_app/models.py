@@ -1,8 +1,7 @@
-from django.db import models
 
 # Create your models here.
 from django.db import models
-
+from django import forms
 
 PICKER_CHOICES = (
     ('comments','Comments'),
@@ -20,3 +19,9 @@ class insta_model(models.Model):
         return self.insta_url
 
 
+class insta_ghost_model(models.Model):
+    insta_ID = models.CharField(max_length=500)
+
+
+    def __str__(self):
+        return self.insta_url

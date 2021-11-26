@@ -1,0 +1,14 @@
+<!-- templates/about.html -->
+{% extends '_base.html' %}
+
+{% block title %}ghosts_are.html{% endblock title %}
+
+{% block content %}
+
+  <h1>Ghost Followers are:</h1>
+  <ol>
+  {% for book in winner %}
+  <li>{{ book }}</li> 
+  {% endfor %}
+  </ol>
+{% endblock content %}

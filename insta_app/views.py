@@ -5,13 +5,96 @@ from django.urls import reverse, reverse_lazy
 # books/views.py
 from django.views.generic import ListView, DetailView, UpdateView
 from django.views.generic.edit import CreateView
-from .models import insta_model
-from .forms import AddCreateForm, FreeAddCreateForm
+from .models import insta_ghost_model, insta_model
+from .forms import AddCreateForm, FreeAddCreateForm, AddCreateGhostForm
 import instaloader
 import random
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+# ghosts_are_view
+def ghosts_are_view(request):
+    context = {}
+    form = AddCreateGhostForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        # save the form data to model
+        print('ghosts_are_view')
+        form.save()
+
+        a = insta_ghost_model.objects.values( 'insta_ID' )
+        b = a[len(a)-1]
+        user_insta_ID_str = b["insta_ID"]
+        print(user_insta_ID_str)
+        
+
+        PROFILE = user_insta_ID_str
+        # SHORTCODE = user_insta_url_str[28:39]
+        # print("Short code is: " + SHORTCODE)
+               
+        L = instaloader.Instaloader()
+
+        # Load session previously saved with `instaloader -l USERNAME`:
+        L.login("anis2423f", "anisanisanis") 
+        # USER = "anis2423f"
+        # L.load_session_from_file(USER)
+        profile = instaloader.Profile.from_username(L.context, PROFILE)
+
+        ff = profile.followers
+        print(ff)
+
+        if ff> 500:
+            ghost_list = ["it is not posible to find for acounts with more than 500 followers!!"]
+            context= {'winner':ghost_list}
+            return render(request, "ghosts_are.html", context)
+
+
+
+
+        likes = set()
+        print("Fetching likes of all posts of profile {}.".format(profile.username))
+        for post in profile.get_posts():
+            print(post)
+            likes = likes | set(post.get_likes())
+
+        print("Fetching followers of profile {}.".format(profile.username))
+        followers = set(profile.get_followers())
+
+        ghosts = followers - likes
+        ghost_list = []
+        for ghost in ghosts:
+            a = ghost.username
+            ghost_list.append(a)
+
+        print(ghost_list)
+
+        context= {'winner':ghost_list}   
+
+        # print("Storing ghosts into file.")
+        # with open("inactive-users.txt", 'w') as f:
+        #     for ghost in ghosts:
+        #         print(ghost.username, file=f)
+
+    return render(request, "ghosts_are.html", context)
+
+
+
+# ghost_followers_view
+def ghost_followers_view(request):
+
+    context ={}
+    print("ghost_followers_view")
+    # create object of form
+    form = AddCreateGhostForm(request.POST or None, request.FILES or None)
+      
+    context['form']= form
+    # print(context['form'])
+    return render(request, "ghost_followers.html", context)
+
+
+
+
+
+# pick
 def win_view(request):
     context = {}
     form = AddCreateForm(request.POST or None, request.FILES or None)

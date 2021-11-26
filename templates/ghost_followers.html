@@ -1,0 +1,18 @@
+<!-- templates/about.html -->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Ghost Followers{% endblock title %}
+
+{% block content %}
+
+<h1>Enter your page URL</h1>
+<form action='{% url 'ghosts_are' %}' method="POST">
+
+  {% csrf_token %}
+  {{ form|crispy }}
+  
+
+  <button type="submit">SUBMIT</button>
+  </form>
+{% endblock content %}
