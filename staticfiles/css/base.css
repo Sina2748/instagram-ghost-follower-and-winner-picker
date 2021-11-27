@@ -3,7 +3,8 @@ h1 {
     color: red;
   }
   
-  .bookcover {
-    height: 300px;
-    width: auto;
+  .home {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
   }

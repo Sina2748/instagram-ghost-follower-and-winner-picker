@@ -6,7 +6,6 @@
 
 {% block content %}
   <h1>Homepage</h1>
-  <img class='bookcover' src='{% static 'images/dfp.png' %}'>
   {% if user.is_authenticated %}
   Hi {{ user.email }}!
   <p><a href='{% url 'logout' %}'>Log Out</a></p>
@@ -15,4 +14,27 @@
   <a href='{% url 'login' %}'>Log In</a>
   <a href='{% url 'signup' %}'>Sign Up</a>
   {% endif %}
+
+  <br>
+  <img class='home' src='{% static 'images/menu.png' %}'>
+  <p>
+    Here I use Django and Instaloader to build a website where users can pick winners or find their page ghost followers.
+First, started a Django project and movied everything to a docker container. Added PostgreSQL and made the needed apps.
+I also used Django Crispy Forms and Django-allauth, popular 3rd party package.
+  </p>
+  <img class='home' src='{% static 'images/free.png' %}'>
+  <p>
+    "Free picker" let's user try the service without singing up and paying,
+     but only returns one winner. A complete URL should be given for the code to find the Short-Code and wait fot it to sing in our Instagram account.
+  </p>
+  <img class='home' src='{% static 'images/winners.png' %}'>
+  <p>
+    "Winners picker" let's user find many winners from likes, comments and mentions of a post.
+     Here also a complete URL should be given for the code to find the Short-Code.
+     You can have as many winners as you need but It shouln't be higer than participants.
+  <img class='home' src='{% static 'images/ghost.png' %}'>
+  <p>
+    "Ghost follower" returns a list of all the followers, who have never liked a post from that page. It needs a considerable amount of time for the code to calculator 
+    therefor, it's not possible to do for accounts with more than 500 followers.
+  </p>
 {% endblock content %}
