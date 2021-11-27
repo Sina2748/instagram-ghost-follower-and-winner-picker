@@ -429,7 +429,7 @@ def free_pick_view(request):
       
     context['form']= form
     # print(context['form'])
-    return render(request, "insta_app_templates/add.html", context)
+    return render(request, "insta_app_templates/add_free.html", context)
 
 
 

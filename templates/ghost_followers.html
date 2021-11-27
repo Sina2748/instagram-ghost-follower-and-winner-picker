@@ -6,7 +6,8 @@
 
 {% block content %}
 
-<h1>Enter your page URL</h1>
+<h1>Find your Ghost Followers: </h1>
+<h4>People who followed you but never liked any of your posts</h4>
 <form action='{% url 'ghosts_are' %}' method="POST">
 
   {% csrf_token %}
